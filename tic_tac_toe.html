@@ -1,0 +1,984 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Tic Tac Toe</title>
+	<style>
+	header
+	{
+	overflow: hidden;
+	padding:30px 0px;
+	text-align: center;
+	background-color:black;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	  font-size:34px;
+        font-family:Courier New;
+         color:yellow;
+	}
+	#back
+	{
+	   display: block;
+  	margin-left: 370px;
+  	margin-right: auto;
+	margin-top:3%;
+ 	 width: 50%;
+	width:550px;
+        height:450px;
+        border-radius:1%;
+	background-image:url("backreg.jpeg");
+	}
+	body
+	{
+	background-color:#f2f2f2;
+	}
+	.cell {
+  width: 130px;
+  height: 130px;
+  background:black;
+  float: left;
+  margin: 5px
+}
+.cell:first-child + div+ div,
+.cell:first-child + div+ div + div + div + div,
+.cell:first-child + div+ div + div + div + div + div + div + div {
+  background:black;
+}
+.cell:first-child + div+ div + div,
+.cell:first-child + div+ div + div + div + div + div,
+.cell:first-child + div+ div + div + div + div + div + div + div + div {
+  clear: left
+}
+	#grid
+	{
+	position:absolute;
+	margin-left:33%;
+	margin-top:3%;
+	grid-template-columns: 50px 50px 50px 50px;
+	background-color:yellow;
+	}
+	#x
+	{
+	color:yellow;
+	font-weight:bold;
+	font-size:85px;
+	font-family:Arial Black;
+	}
+	.vl {
+  border-left:6px solid yellow;
+	 height:419px;
+	position:absolute;
+	top:120px;
+	left:502px;
+	}
+	.hl
+	{
+	 border-left:417px solid yellow;
+         height:4px;
+        position:absolute;
+        top:185px;
+        left:442px;
+	}
+	.hz
+	{
+	border-left:417px solid yellow;
+        height:4px;
+        position:absolute;
+        top:465px;
+        left:442px;
+	}
+	.vz
+	{
+	border-left:6px solid yellow;
+         height:419px;
+        position:absolute;
+        top:120px;
+        left:785px;
+	}
+	.hz1
+	{
+	   border-left:417px solid yellow;
+         height:4px;
+        position:absolute;
+        top:330px;
+        left:442px;
+	}
+	.vz1
+	{
+	border-left:6px solid yellow;
+         height:419px;
+        position:absolute;
+        top:120px;
+        left:640px;
+	}
+	.cross1
+	{
+	 border-left:6px solid yellow;
+         height:575px;
+        position:absolute;
+        top:140px;
+        left:685px;
+	 -ms-transform: rotate(45deg); 
+  -ms-transform-origin: 20% 40%; 
+  transform: rotate(135deg);
+  transform-origin: 35% 40%;
+	}
+	.cross2
+	{
+	 border-left:6px solid yellow;
+         height:568px;
+        position:absolute;
+        top:140px;
+        left:600px;
+         -ms-transform: rotate(45deg);
+  -ms-transform-origin: 20% 40%;
+  transform: rotate(227deg);
+  transform-origin: 35% 40%;
+	}
+	</style>
+	<script type="text/javascript">
+	var val3;
+	var chk = [8];
+	var player = [8];
+	var scorex=0;
+	var scorey=0;
+	var playercheck=0;
+	var count = 0;
+	var val1;
+	var val2;
+	function formsubmit()
+	{
+	var x = document.getElementById("myAudio"); 
+	x.play();
+	val1=document.getElementById("player1").value;
+	val2=document.getElementById("player2").value;
+	val3=document.getElementById("tic").value;
+	playercheck = val3;
+	if(val1 != "" && val2 != "" && val3 != "" && (val3 ==1 || val3 ==2))
+	{
+	 document.getElementById("back").style.display="none";
+	 document.getElementById("grid").style.display="block";
+	document.getElementById("scorecard").style.display="block";
+	  document.getElementById("ps1").style.display="block";
+	  document.getElementById("s1").style.display="block";
+	  document.getElementById("ps2").style.display="block";
+	  document.getElementById("s2").style.display="block";
+	    document.getElementById("ps1").innerHTML = val1;
+	     document.getElementById("ps2").innerHTML = val2;
+	for(var i=0;i<9;i++)
+	{
+	chk[i]=0;
+	player[i]=0;
+	}
+	}
+	else
+	{
+	alert("Enter the Players Name and who is going to start first in Number");
+	}
+	}
+	function one()
+	{
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+	if(chk[0]==0 && playercheck==1)
+	{
+	chk[0] = 1;
+	player[0]=1;
+	playercheck = 2;
+	document.getElementById("i11").style.display="block";
+	if(chk[1]==1 && player[1]==1 && chk[2]==1 && player[2]==1)
+	{
+	document.getElementById("hl1").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[3]==1 && player[3]==1 && chk[6]==1 && player[6]==1)
+	{
+	document.getElementById("pl").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[4]==1 && player[4]==1 && chk[8]==1 && player[8]==1)
+	{
+	 document.getElementById("c1").style.display="block";
+	  scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	}
+	if(chk[0]==0 && playercheck==2)
+	{
+	   chk[0] = 1;
+	player[0]=2;
+        playercheck = 1;
+        document.getElementById("i21").style.display="block";
+	 if(chk[1]==1 && player[1]==2 && chk[2]==1 && player[2]==2)
+	    {
+	    document.getElementById("hl1").style.display="block";
+	    scorey=scorey+1;
+              document.getElementById("s2").innerHTML = scorey;
+	    }
+	    if(chk[3]==1 && player[3]==2 && chk[6]==1 && player[6]==2)
+	    {
+	    document.getElementById("pl").style.display="block";
+	    scorey=scorey+1;
+		  document.getElementById("s2").innerHTML = scorey;
+	    }
+	    if(chk[4]==1 && player[4]==2 && chk[8]==1 && player[8]==2)
+	    {
+	     document.getElementById("c1").style.display="block";
+	      scorey=scorey+1;
+	    document.getElementById("s2").innerHTML = scorey;
+	 }
+	}
+	count=count+1;
+	if(count==9)
+	{
+	if(scorex>scorey)
+	{
+	document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+	}
+	else
+	{
+	  document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+	}
+	if(scorex == scorey)
+	{
+	document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+	}
+	  document.getElementById("b1").style.display="block";
+	   document.getElementById("b2").style.display="block";
+
+	}
+	}
+	function two()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[1]==0 && playercheck==1)
+        {
+        chk[1] = 1;
+	player[1]=1;
+        playercheck = 2;
+        document.getElementById("i101").style.display="block";
+        if(chk[0]==1 && player[0]==1 && chk[2]==1 && player[2]==1)
+	{
+	document.getElementById("hl1").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[4]==1 && player[4]==1 && chk[7]==1 && player[7]==1)
+	{
+	document.getElementById("vz2").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+        }
+        if(chk[1]==0 && playercheck==2)
+        {
+           chk[1] = 1;
+	player[1]=2;
+        playercheck = 1;
+        document.getElementById("i111").style.display="block";
+            if(chk[0]==1 && player[0]==2 && chk[2]==1 && player[2]==2)
+         {
+         document.getElementById("hl1").style.display="block";
+         scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+         }
+         if(chk[4]==1 && player[4]==2 && chk[7]==1 && player[7]==2)
+         {
+         document.getElementById("vz2").style.display="block";
+         scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+		}
+        }
+	count++;
+	 if(count==9)
+        {
+        if(scorex>scorey)
+        {
+    	  document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	  if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+        
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+
+	}
+	}
+	 function three()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[2]==0 && playercheck==1)
+        {
+        chk[2] = 1;
+	player[2]=1;
+        playercheck = 2;
+        document.getElementById("i191").style.display="block";
+        if(chk[0]==1 && player[0]==1 && chk[1]==1 && player[1]==1)
+	{
+	document.getElementById("hl1").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[5]==1 && player[5]==1 && chk[8]==1 && player[8]==1)
+	{
+	  document.getElementById("vz1").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[4]==1 && player[4]==1 && chk[6]==1 && player[6]==1)
+	{
+	  document.getElementById("c2").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+        }
+        if(chk[2]==0 && playercheck==2)
+        {
+           chk[2] = 1;
+	player[2]=2;
+        playercheck = 1;
+        document.getElementById("i201").style.display="block";
+        if(chk[0]==1 && player[0]==2 && chk[1]==1 && player[1]==2)
+        {
+        document.getElementById("hl1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[5]==1 && player[5]==2 && chk[8]==1 && player[8]==2)
+        {
+          document.getElementById("vz1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[4]==1 && player[4]==2 && chk[6]==1 && player[6]==2)
+        {
+          document.getElementById("c2").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        }
+	count++;
+	if(count==9)
+        {
+        if(scorex>scorey)
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	   if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+        
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+	}
+	}
+	function four()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[3]==0 && playercheck==1)
+        {
+        chk[3] = 1;
+	player[3]=1;
+        playercheck = 2;
+        document.getElementById("i281").style.display="block";
+        if(chk[0]==1 && player[0]==1 && chk[6]==1 && player[6]==1)
+        {
+        document.getElementById("pl").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        if(chk[4]==1 && player[4]==1 && chk[5]==1 && player[5]==1)
+        {
+        document.getElementById("hz2").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        }
+        if(chk[3]==0 && playercheck==2)
+        {
+           chk[3] = 1;
+	player[3]=2;
+        playercheck = 1;
+        document.getElementById("i291").style.display="block";
+           if(chk[0]==1 && player[0]==2 && chk[6]==1 && player[6]==2)
+        {
+        document.getElementById("pl").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[4]==1 && player[4]==2 && chk[5]==1 && player[5]==2)
+        {
+        document.getElementById("hz2").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        }
+	count++;
+	if(count==9)
+        {
+        if(scorex>scorey)
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	   if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+        
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+	}
+	}
+	function five()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[4]==0 && playercheck==1)
+        {
+        chk[4] = 1;
+	player[4]=1;
+        playercheck = 2;
+        document.getElementById("i391").style.display="block";
+        if(chk[3]==1 && player[3]==1 && chk[5]==1 && player[5]==1)
+	{
+	document.getElementById("hz2").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[1]==1 && player[1]==1 && chk[7]==1 && player[7]==1)
+	{
+	document.getElementById("vz2").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[0]==1 && player[0]==1 && chk[8]==1 && player[8]==1)
+	{
+	document.getElementById("c1").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+	if(chk[2]==1 && player[2]==1 && chk[6]==1 && player[6]==1)
+	{
+	document.getElementById("c2").style.display="block";
+	scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+	}
+        }
+        if(chk[4]==0 && playercheck==2)
+        {
+           chk[4] = 1;
+	player[4]=2;
+        playercheck = 1;
+        document.getElementById("i401").style.display="block";
+        if(chk[3]==1 && player[3]==2 && chk[5]==1 && player[5]==2)
+        {
+        document.getElementById("hz2").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[1]==1 && player[1]==2 && chk[7]==1 && player[7]==2)
+        {
+        document.getElementById("vz2").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[0]==1 && player[0]==2 && chk[8]==1 && player[8]==2)
+        {
+        document.getElementById("c1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[2]==1 && player[2]==2 && chk[6]==1 && player[6]==2)
+        {
+        document.getElementById("c2").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        }
+	count++;
+	if(count==9)
+        {
+        if(scorex>scorey)
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	   if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+        
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+	}
+	}
+	function six()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[5]==0 && playercheck==1)
+        {
+        chk[5] = 1;
+	player[5]=1;
+        playercheck = 2;
+        document.getElementById("i471").style.display="block";
+        if(chk[2]==1 && player[2]==1 && chk[8]==1 && player[8]==1)
+        {
+        document.getElementById("vz1").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        if(chk[3]==1 && player[3]==1 && chk[4]==1 && player[4]==1)
+        {
+        document.getElementById("hz2").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        }
+        if(chk[5]==0 && playercheck==2)
+        {
+           chk[5] = 1;
+	player[5]=2;
+        playercheck = 1;
+        document.getElementById("i481").style.display="block";
+        if(chk[2]==1 && player[2]==2 && chk[8]==1 && player[8]==2)
+        {
+        document.getElementById("vz1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[3]==1 && player[3]==2 && chk[4]==1 && player[4]==2)
+        {
+        document.getElementById("hz2").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        }
+	count++;
+	if(count==9)
+        {
+        if(scorex>scorey)
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	   if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+        
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+	}
+	}
+	function seven()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[6]==0 && playercheck==1)
+        {
+        chk[6] = 1;
+	player[6]=1;
+        playercheck = 2;
+        document.getElementById("i551").style.display="block";
+        if(chk[0]==1 && player[0]==1 && chk[3]==1 && player[3]==1)
+        {
+        document.getElementById("pl").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        if(chk[7]==1 && player[7]==1 && chk[8]==1 && player[8]==1)
+        {
+        document.getElementById("hz1").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        if(chk[4]==1 && player[4]==1 && chk[2]==1 && player[2]==1)
+        {
+         document.getElementById("c2").style.display="block";
+          scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        }
+        if(chk[6]==0 && playercheck==2)
+        {
+           chk[6] = 1;
+	player[6]=2;
+        playercheck = 1;
+        document.getElementById("i561").style.display="block";
+        if(chk[0]==1 && player[0]==2 && chk[3]==1 && player[3]==2)
+        {
+        document.getElementById("pl").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[7]==1 && player[7]==2 && chk[8]==1 && player[8]==2)
+        {
+        document.getElementById("hz1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[4]==1 && player[4]==2 && chk[2]==1 && player[2]==2)
+        {
+         document.getElementById("c2").style.display="block";
+          scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        }
+	count++;
+	if(count==9)
+        {
+        if(scorex>scorey)
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	   if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+        
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+	}
+	}
+	function eight()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[7]==0 && playercheck==1)
+        {
+        chk[7] = 1;
+	player[7]=1;
+        playercheck = 2;
+        document.getElementById("i631").style.display="block";
+       if(chk[1]==1 && player[1]==1 && chk[4]==1 && player[4]==1)
+        {
+        document.getElementById("vz2").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        if(chk[6]==1 && player[6]==1 && chk[8]==1 && player[8]==1)
+        {
+         document.getElementById("hz1").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+   	}
+        }
+        if(chk[7]==0 && playercheck==2)
+        {
+           chk[7] = 1;
+	player[7]=2;
+        playercheck = 1;
+        document.getElementById("i641").style.display="block";
+        if(chk[1]==1 && player[1]==2 && chk[4]==1 && player[4]==2)
+        {
+        document.getElementById("vz2").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[6]==1 && player[6]==2 && chk[8]==1 && player[8]==2)
+        {
+         document.getElementById("hz1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        }
+	count++;
+	if(count==9)
+        {
+        if(scorex>scorey)
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	   if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+  
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+	}
+	}
+	function nine()
+        {
+	 var x = document.getElementById("myAudio"); 
+        x.play();
+        if(chk[8]==0 && playercheck==1)
+        {
+        chk[8] = 1;
+	player[8]=1;
+        playercheck = 2;
+        document.getElementById("i711").style.display="block";
+        if(chk[6]==1 && player[6]==1 && chk[7]==1 && player[7]==1)
+        {
+        document.getElementById("hz1").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        if(chk[2]==1 && player[2]==1 && chk[5]==1 && player[5]==1)
+        {
+        document.getElementById("vz1").style.display="block";
+        scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        if(chk[4]==1 && player[4]==1 && chk[0]==1 && player[0]==1)
+        {
+         document.getElementById("c1").style.display="block";
+          scorex=scorex+1;
+	  document.getElementById("s1").innerHTML = scorex;
+        }
+        }
+        if(chk[8]==0 && playercheck==2)
+        {
+           chk[8] = 1;
+	player[8]=2;
+        playercheck = 1;
+        document.getElementById("i721").style.display="block";
+        if(chk[6]==1 && player[6]==2 && chk[7]==1 && player[7]==2)
+        {
+        document.getElementById("hz1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[2]==1 && player[2]==2 && chk[5]==1 && player[5]==2)
+        {
+        document.getElementById("vz1").style.display="block";
+        scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        if(chk[4]==1 && player[4]==2 && chk[0]==1 && player[0]==2)
+        {
+         document.getElementById("c1").style.display="block";
+          scorey=scorey+1;
+	  document.getElementById("s2").innerHTML = scorey;
+        }
+        }
+	count++;
+	if(count==9)
+        {
+        if(scorex>scorey)
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val1 + " won the game";
+        }
+        else
+        {
+          document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = val2 + " won the game";
+        }
+	   if(scorex == scorey)
+        {
+        document.getElementById("win").style.display="block";
+            document.getElementById("win").innerHTML = "game tied";
+        }
+     
+	 document.getElementById("b1").style.display="block";
+           document.getElementById("b2").style.display="block";
+	}
+	}
+	function func()
+	{
+	document.getElementById("i11").style.display="none";
+	document.getElementById("i21").style.display="none";
+	 document.getElementById("i101").style.display="none";
+	 document.getElementById("i111").style.display="none";
+	document.getElementById("i191").style.display="none";
+	document.getElementById("i201").style.display="none";
+	document.getElementById("i281").style.display="none";
+	document.getElementById("i291").style.display="none";
+	document.getElementById("i391").style.display="none";
+	document.getElementById("i401").style.display="none";
+	document.getElementById("i471").style.display="none";
+	document.getElementById("i481").style.display="none";
+	  document.getElementById("i551").style.display="none";
+	 document.getElementById("i561").style.display="none";
+	 document.getElementById("i631").style.display="none";
+	 document.getElementById("i641").style.display="none";
+	document.getElementById("i711").style.display="none";
+	 document.getElementById("i721").style.display="none";
+	 document.getElementById("pl").style.display="none";
+	 document.getElementById("hl1").style.display="none";
+	 document.getElementById("hz1").style.display="none";
+	 document.getElementById("vz1").style.display="none";
+	 document.getElementById("hz2").style.display="none";
+	 document.getElementById("vz2").style.display="none";
+	 document.getElementById("c1").style.display="none";
+	 document.getElementById("c2").style.display="none";
+	document.getElementById("s1").style.display="none";
+         document.getElementById("s2").style.display="none";
+	 document.getElementById("win").style.display="none";
+	 document.getElementById("b1").style.display="none";
+	 document.getElementById("b2").style.display="none";
+	scorex=0;
+	scorey=0;
+	count=0;
+	for(var k=0;k<9;k++)
+	{
+	chk[k]=0;
+	player[k]=0;
+	}
+	 for(;;)
+	{
+	playercheck = prompt("who is going to play first in number");
+	if(playercheck == 1 || playercheck == 2)
+	{
+	break;
+	}
+	}
+	}
+	function func1()
+	{
+	location.reload();
+	}
+	</script>
+	</head>
+	<body>
+	<audio id="myAudio">
+  <source src="click.mp3" type="audio/mpeg">
+</audio>
+	<header>
+	TiC-TaC-ToE
+	</header>	
+	 <img src="logo.jpg" style="width:80px;height:65px;margin-right:90%;position:absolute;top:20px;left:20px;"/>
+	 <div>
+	 <div id="back">
+	<div>
+	<form>
+	<input style=" text-indent: 10px;font-size:16px;border-color:yellow;height:40px;width:270px;margin-bottom:5%;margin-top:15%;border:none;margin-left:25%;margin-right:auto; border-bottom-right-radius:2px;border-bottom-left-radius:2px;border-top-right-radius:2px;border-top-left-radius:2px;outline-width:0;border-top-left-radius:5px;
+        border-top-right-radius:5px;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;" type="text" id="player1" placeholder="Name of Player One" required/><br>
+	<input style="text-indent: 10px;font-size:16px;height:40px;width:270px;margin-bottom:5%;margin-top:2%;margin-left:25%;margin-right:auto;border:none;outline-width: 0;border-top-left-radius:5px;
+        border-top-right-radius:5px;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;" type="text" id="player2" placeholder="Name of Player Two" required/><br>
+	  <input style="text-indent: 10px;font-size:16px;height:40px;width:270px;margin-bottom:5%;margin-top:2%;margin-left:25%;margin-right:auto;border:none;outline-width: 0;border-top-left-radius:5px;
+        border-top-right-radius:5px;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;" type="text" id="tic" placeholder="Frist Starting is Player 1 or Player 2" required/><br>
+	<input  id="play" onclick="formsubmit();" type="button" value="start playing" style="font-family:Arial;margin-left:37%;width:150px;height:40px;border:none;background-color:black;color:yellow;font-size:15px;border-top-left-radius:5px;
+        border-top-right-radius:5px;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;"/>
+	</form>
+	</div>
+	 </div>
+	<div id="grid" style="display:none;z-index:-1;">
+  <div id="i0" class="cell" onclick='one();' style="z-index:-1;">
+  <img id="i11" src="first1.png" style="z-index:-1;width: 130px;height: 130px;display:none;"/>   
+   <img id="i21" src="second2.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i1" class="cell" onclick='two();'>
+    <img id="i101" src="first9.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i111" src="second10.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i2" class="cell" onclick='three();'>
+    <img id="i191" src="first17.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i201" src="second18.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i3" class="cell" onclick='four();'>
+    <img id="i281" src="first25.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i291" src="second26.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i4" class="cell" onclick='five();'>
+    <img id="i391" src="first33.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i401" src="second34.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i5" class="cell" onclick='six();'>
+    <img id="i471" src="first41.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i481" src="second42.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i6" class="cell" onclick='seven();'>
+    <img id="i551" src="first49.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i561" src="second50.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i7" class="cell" onclick='eight();'>
+    <img id="i631" src="first57.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i641" src="second58.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <div id="i8" class="cell" onclick='nine();'>
+    <img id="i711" src="first65.png" style=" width: 130px;height: 130px;display:none;"/>
+   <img id="i721" src="second66.jpg" style="width: 130px;height: 130px;display:none;"/>
+  </div>
+  <p id="win" style="font-size:20px;font-weight:bold;margin-left:20px;display:none;"></p>
+</div>
+    <p id="pl" class="vl" style="display:none"></p>
+    <p id="hl1" class="hl" style="display:none"></p>
+    <p id="hz1" class="hz" style="display:none"></p>
+    <p id="vz1" class="vz" style="display:none"></p>
+    <p id="hz2" class="hz1" style="display:none"></p>
+     <p id="vz2" class="vz1" style="display:none"></p>
+     <p id="c1" class="cross1" style="display:none"></p>
+     <p id="c2" class="cross2" style="display:none"></p>
+</div>
+<p id="scorecard" style="position:absolute;top:120px;left:120px;font-size:20px;font-weight:bold;display:none;">score card</p>
+ <p id="ps1" style="position:absolute;top:150px;left:120px;font-size:20px;font-weight:bold;font-family:Arial;display:none;"></p>
+  <p id="s1" style="position:absolute;top:150px;left:250px;font-size:20px;font-weight:bold;font-family:Arial;display:none;"></p>
+    <p id="s2" style="position:absolute;top:190px;left:250px;font-size:20px;font-weight:bold;font-family:Arial;display:none;"></p>
+ <p id="ps2" style="position:absolute;top:190px;left:120px;font-size:20px;font-weight:bold;font-family:Arial;display:none;"></p>
+ <input id="b1" type="button" onclick="func();" style="display:none;position:absolute;top:260px;left:20px;font-size:20px;font-weight:bold;font-family:Arial;background-color:yellow;border:none;width:150px;height:80px;" value="New Game"/>
+ <input id="b2" type="button" onclick="func1();" style="display:none;position:absolute;top:260px;left:180px;font-size:20px;font-weight:bold;font-family:Arial;background-color:yellow;border:none;width:150px;height:80px;" value="Play Again"/>
+</body>
+</html>
